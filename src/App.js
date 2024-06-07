@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+/* create react component that increments a counter when a button is clicked
+ Note: the challenge is to implement it in such a way that it does not use
+      useState hook or class state.
+*/
+import React, { useRef, useState } from "react";
 
-function App() {
+const Counter = () => {
+  const counterRef = useRef(0);
+  const handleClick = () => {
+    counterRef.current += 1;
+    setForceRender({});
+  };
+  const [, setForceRender] = useState({});
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="justify-center flex flex-col mt-3">
+      <h1 className="text-center">{counterRef.current}</h1>
+      <button onClick={handleClick}>Increment</button>
     </div>
   );
-}
+};
 
-export default App;
+export default Counter;
